@@ -30,7 +30,10 @@ import com.c211.opinbackend.model.response.OAuthUserInfoResponse;
 import com.c211.opinbackend.repository.MemberRepository;
 import com.c211.opinbackend.service.MemberService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
+@Slf4j
 @RequestMapping("/auth")
 public class MemberController {
 
