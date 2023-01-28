@@ -11,19 +11,18 @@ import lombok.RequiredArgsConstructor;
 
 @EnableWebSecurity
 @Configuration
-@RequiredArgsConstructor
-@EnableGlobalMethodSecurity
 public class SecurityConfig {
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http
-			.authorizeRequests()
-			/**
-			 * httpServletRquest를 사용하느 오쳥에 대한 접근 제한자를 설정하겠다
-			 */
-			.antMatchers("/test/").permitAll() // 이 api 에 대한 인증은 모두 혀용
-			.anyRequest().authenticated();// 나머지 요청은 인증을 받아야한다.
-		return http.build();
-	}
+		@Bean
+		public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+			http
+				// rest 서버이기 때문에 인증정보는 stateLess 하다 그렇기데 csrf 토큰 이 필요없다.
+				.authorizeRequests().antMatchers("/api/hello").permitAll()
+				/**
+				 * httpServletRquest를 사용하느 오쳥에 대한 접근 제한자를 설정하겠다
+				 */
+				.anyRequest().authenticated();// 나머지 요청은 인증을 받아야한다.
+			return http.build();
+		}
+
 }
