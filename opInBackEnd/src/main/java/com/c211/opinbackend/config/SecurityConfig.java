@@ -10,14 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.c211.opinbackend.service.CustomUserDetailService;
-
 @EnableWebSecurity
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-
-	private CustomUserDetailService customUserDetailService;
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -45,11 +41,11 @@ public class SecurityConfig {
 			// .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
 			.and()
-			.httpBasic()
+			.httpBasic();
 
-			.and()
-			.formLogin()
-			.disable();
+		// .and()
+		// .formLogin()
+		// .disable();
 
 		return http.build();
 	}

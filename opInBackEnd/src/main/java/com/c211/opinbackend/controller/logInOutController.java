@@ -40,7 +40,6 @@ public class logInOutController {
 
 		if (!memberDto.isAnyNull() && !memberDto.isNotBlink()) {
 			memberService.signUp(memberDto);
-			//customUserDetailService.loadUserByUsername(memberJoinRequest.getEmail());
 			// TODO: 2023/01/28 에러 처리 어드바이저 필요합니다
 			// TODO: 2023/01/28 중복 아이디 검사 필요
 		} else {
@@ -55,7 +54,6 @@ public class logInOutController {
 		log.info(memberRequest.getPassword());
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		log.info(name);
-		memberRepository.findByEmailAndPassword(memberRequest.getEmail(), memberRequest.getPassword());
 
 		// TODO: 2023/01/29 비밀번호 확인 필요
 		// 토큰 없이는 못해.. jwt 없이는 못하네?
