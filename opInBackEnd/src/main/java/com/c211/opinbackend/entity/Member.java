@@ -10,18 +10,20 @@ import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
 @Builder
 @ToString
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "MEMBER_SEQ")
+	@Column(name = "MEMBER_ID")
 	private Long seq;
 
 	@Column(name = "NICKNAME")
@@ -36,4 +38,8 @@ public class Member {
 	@Column(name = "PROVIDER")
 	@Enumerated(EnumType.STRING)
 	private ProviderType providerType;
+
+	@Column
+	@Enumerated(EnumType.STRING)
+	private RoleType roleType;
 }
