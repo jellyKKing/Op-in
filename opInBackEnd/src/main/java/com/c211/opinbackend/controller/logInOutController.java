@@ -1,6 +1,7 @@
 package com.c211.opinbackend.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,7 +53,8 @@ public class logInOutController {
 	public ResponseEntity<?> signIn(@RequestBody MemberRequest memberRequest) {
 		log.info(memberRequest.getEmail());
 		log.info(memberRequest.getPassword());
-		
+		String name = SecurityContextHolder.getContext().getAuthentication().getName();
+		log.info(name);
 		memberRepository.findByEmailAndPassword(memberRequest.getEmail(), memberRequest.getPassword());
 
 		// TODO: 2023/01/29 비밀번호 확인 필요
