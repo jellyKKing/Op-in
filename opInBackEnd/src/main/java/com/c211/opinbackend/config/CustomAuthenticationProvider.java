@@ -31,7 +31,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		UserDetails userDetails = customUserDetailService.loadUserByUsername(userName);
 		if (!passwordEncoder.matches(userPwd, userDetails.getPassword())) {
 			log.info("비밀번호가 틀림");
-			throw new BadCredentialsException("비밀번호가 틀립니다");
+			throw new BadCredentialsException("비밀번호가 잘못됬습니다!");
 		}
 		return new UsernamePasswordAuthenticationToken(userName, userPwd, userDetails.getAuthorities());
 	}
