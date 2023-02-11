@@ -58,6 +58,12 @@ public class RepoController {
 		return null;
 	}
 
+	/**
+	 * 특정 래포 조회 api
+	 *
+	 * @param repoId
+	 * @return
+	 */
 	@GetMapping("/{repoId}")
 	public ResponseEntity<?> repoDetail(@PathVariable Long repoId) {
 		RepoDetailResponse detailResponse = repositoryService.getDetailResponse(repoId);

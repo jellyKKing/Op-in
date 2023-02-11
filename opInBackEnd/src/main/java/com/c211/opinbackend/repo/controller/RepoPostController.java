@@ -15,16 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.c211.opinbackend.exception.member.MemberExceptionEnum;
 import com.c211.opinbackend.exception.member.MemberRuntimeException;
 import com.c211.opinbackend.exception.repositroy.RepositoryExceptionEnum;
-import com.c211.opinbackend.persistence.entity.Comment;
-import com.c211.opinbackend.persistence.entity.RepositoryPost;
 import com.c211.opinbackend.repo.model.requeset.CreatePostRequest;
 import com.c211.opinbackend.repo.model.requeset.RequestCommentCreateToPost;
 import com.c211.opinbackend.repo.model.requeset.RequestUpdatePost;
+import com.c211.opinbackend.repo.model.response.CommentSaveRes;
 import com.c211.opinbackend.repo.model.response.RepoPostDetailResponse;
+import com.c211.opinbackend.repo.model.response.RepoPostSaveResponse;
 import com.c211.opinbackend.repo.model.response.RepoPostSimpleResponse;
-import com.c211.opinbackend.repo.service.commnet.CommentService;
-import com.c211.opinbackend.repo.service.mapper.CommentMapper;
-import com.c211.opinbackend.repo.service.mapper.RepoPostMapper;
+import com.c211.opinbackend.repo.service.comment.CommentService;
 import com.c211.opinbackend.repo.service.repo.RepositoryPostService;
 import com.c211.opinbackend.util.SecurityUtil;
 
@@ -54,8 +52,8 @@ public class RepoPostController {
 				() -> new MemberRuntimeException(
 					MemberExceptionEnum.MEMBER_NOT_EXIST_EXCEPTION)
 			);
-			RepositoryPost post = repositoryPostService.createPostToRepository(createPostRequest, memberEmail);
-			return ResponseEntity.ok().body(RepoPostMapper.toSimpleResponse(post));
+			RepoPostSaveResponse post = repositoryPostService.createPostToRepository(createPostRequest, memberEmail);
+			return ResponseEntity.ok().body(post);
 		} catch (Exception exception) {
 			exception.printStackTrace();
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -98,7 +96,7 @@ public class RepoPostController {
 	/**
 	 * 맴버에 속한 포스트들 조회
 	 *
-	 * @param memberId
+	 * @param nickName
 	 * @return
 	 */
 	@GetMapping("member/{nickName}")
@@ -129,8 +127,8 @@ public class RepoPostController {
 		String memberEmail = SecurityUtil.getCurrentUserId()
 			.orElseThrow(() -> new MemberRuntimeException(MemberExceptionEnum.MEMBER_WRONG_EXCEPTION));
 
-		Comment comment = commentService.createCommentToPost(memberEmail, requestCommentCreateToPost);
-		return ResponseEntity.ok().body(CommentMapper.toDetailCommentDto(comment));
+		CommentSaveRes comment = commentService.createCommentToPost(memberEmail, requestCommentCreateToPost);
+		return ResponseEntity.ok().body(comment);
 
 	}
 

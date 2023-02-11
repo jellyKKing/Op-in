@@ -22,6 +22,7 @@ import com.c211.opinbackend.persistence.repository.RepoRepository;
 import com.c211.opinbackend.repo.model.requeset.CreatePostRequest;
 import com.c211.opinbackend.repo.model.requeset.RequestUpdatePost;
 import com.c211.opinbackend.repo.model.response.RepoPostDetailResponse;
+import com.c211.opinbackend.repo.model.response.RepoPostSaveResponse;
 import com.c211.opinbackend.repo.model.response.RepoPostSimpleResponse;
 import com.c211.opinbackend.repo.service.mapper.RepoPostMapper;
 
@@ -39,7 +40,7 @@ public class RepositoryPostServiceImpl implements RepositoryPostService {
 
 	@Override
 	@Transactional
-	public RepositoryPost createPostToRepository(CreatePostRequest createPostRequest, String memberEmail) {
+	public RepoPostSaveResponse createPostToRepository(CreatePostRequest createPostRequest, String memberEmail) {
 		// 등록할 래포지토리를 찾고
 
 		Long repositoryId = createPostRequest.getRepositoryId();
@@ -65,7 +66,9 @@ public class RepositoryPostServiceImpl implements RepositoryPostService {
 				.closeState(false)
 				.build();
 			repositoryPost.createPostToRepo(repository);
-			return repoPostRepository.save(repositoryPost);
+			RepositoryPost save = repoPostRepository.save(repositoryPost);
+			RepoPostSaveResponse repoPostSaveResponse = RepoPostMapper.toSaveResponse(save);
+			return repoPostSaveResponse;
 		} catch (Exception exception) {
 			return null;
 		}
