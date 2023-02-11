@@ -362,6 +362,7 @@ public class MemberServiceImpl implements MemberService {
 	 * */
 	@Override
 	public MemberFollow followMember(String nickname) {
+		// TODO: 2023/02/12 맴버 가 자기자신을 팔로우하게 되면 어떻게 되나요
 		Member fromMember = getMember();
 		Member toMember = memberRepository.findByNickname(nickname)
 			.orElseThrow(() -> new MemberRuntimeException(MemberExceptionEnum.MEMBER_NOT_EXIST_EXCEPTION));
