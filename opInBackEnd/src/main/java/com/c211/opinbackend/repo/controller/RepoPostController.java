@@ -98,7 +98,7 @@ public class RepoPostController {
 	/**
 	 * 맴버에 속한 포스트들 조회
 	 *
-	 * @param memberId
+	 * @param nickName
 	 * @return
 	 */
 	@GetMapping("member/{nickName}")
