@@ -1,6 +1,5 @@
 package com.c211.opinbackend.persistence.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +18,7 @@ public class IssueContributor {
 	@Column(name = "ISSUE_CONTRIBUTOR_ID")
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ISSUE_ID")
 	private Issue issue;
 }

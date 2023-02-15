@@ -2,7 +2,6 @@ package com.c211.opinbackend.persistence.entity;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +28,7 @@ public class PullRequest {
 
 	private Long number;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "REPOSITORY_ID")
 	private Repository repository;
 
@@ -43,7 +42,6 @@ public class PullRequest {
 	private LocalDateTime updatedAt;
 	private LocalDateTime closedAt;
 	private LocalDateTime mergedAt;
-
 
 	public void setRepository(Repository repo) {
 		this.repository = repo;

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -64,24 +65,24 @@ public class Repository {
 	@NotNull
 	private Long watchers;
 
-	@OneToMany(mappedBy = "repository")
+	@OneToMany(mappedBy = "repository", cascade = CascadeType.ALL)
 	List<RepositoryTechLanguage> repositoryTechLanguages = new ArrayList<>();
-	@OneToMany(mappedBy = "repository")
+	@OneToMany(mappedBy = "repository", cascade = CascadeType.ALL)
 	List<Issue> issueList = new ArrayList<>();
 
-	@OneToMany(mappedBy = "repository")
+	@OneToMany(mappedBy = "repository", cascade = CascadeType.ALL)
 	List<RepositoryPost> repositoryPostList = new ArrayList<>();
 
-	@OneToMany(mappedBy = "repository")
+	@OneToMany(mappedBy = "repository", cascade = CascadeType.ALL)
 	List<RepositoryQnA> repositoryQnAList = new ArrayList<>();
 
-	@OneToMany(mappedBy = "repository")
+	@OneToMany(mappedBy = "repository", cascade = CascadeType.ALL)
 	List<RepositoryContributor> repositoryContributorList = new ArrayList<>();
 
-	@OneToMany(mappedBy = "repository")
+	@OneToMany(mappedBy = "repository", cascade = CascadeType.ALL)
 	List<RepositoryTopic> topicList = new ArrayList<>();
 
-	@OneToMany(mappedBy = "repository")
+	@OneToMany(mappedBy = "repository", cascade = CascadeType.ALL)
 	List<PullRequest> pullRequestList = new ArrayList<>();
 
 	public void setPullRequestList(List<PullRequest> pullRequestList) {

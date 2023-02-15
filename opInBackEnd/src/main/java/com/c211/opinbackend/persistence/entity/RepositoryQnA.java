@@ -30,15 +30,15 @@ public class RepositoryQnA {
 	@Column(name = "REPOSITORY_QNA_ID")
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "MEMBER_ID")
 	private Member authorMember;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "REPOSITORY_ID")
 	private Repository repository;
 
-	@OneToMany(mappedBy = "repositoryQnA")
+	@OneToMany(mappedBy = "repositoryQnA", cascade = CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
 
 	@Lob
