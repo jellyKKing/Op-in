@@ -9,12 +9,10 @@ import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.c211.opinbackend.batch.dto.github.CommitDto;
 import com.c211.opinbackend.batch.dto.mapper.CommitHistoryMapper;
-import com.c211.opinbackend.batch.item.reader.GetRepoCommitReader;
-import com.c211.opinbackend.batch.item.writer.GetRepoCommitWriter;
 import com.c211.opinbackend.batch.listener.LoggerListener;
 import com.c211.opinbackend.batch.step.Action;
+import com.c211.opinbackend.batch.step.GetRepoCommitTasklet;
 import com.c211.opinbackend.persistence.repository.BatchTokenRepository;
 import com.c211.opinbackend.persistence.repository.CommitHistoryRepository;
 import com.c211.opinbackend.persistence.repository.RepoRepository;
@@ -48,9 +46,9 @@ public class GetRepoCommitJobConfig {
 	@Bean
 	public Step getRepoCommitStep() {
 		return stepBuilderFactory.get("getRepoCommitStep")
-			.<CommitDto, CommitDto>chunk(1)
-			.reader(new GetRepoCommitReader(repoRepository, action, batchTokenRepository))
-			.writer(new GetRepoCommitWriter(commitHistoryRepository, commitHistoryMapper))
+			.tasklet(
+				new GetRepoCommitTasklet(batchTokenRepository, repoRepository, action, commitHistoryMapper,
+					commitHistoryRepository))
 			.build();
 	}
 }
