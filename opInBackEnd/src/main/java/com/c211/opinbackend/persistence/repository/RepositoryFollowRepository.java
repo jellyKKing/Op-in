@@ -18,4 +18,6 @@ public interface RepositoryFollowRepository extends JpaRepository<RepositoryFoll
 	List<RepositoryFollow> findByRepositoryIdAndMemberId(Long repoId, Long memberId);
 
 	List<RepositoryFollow> findAll();
+
+	void deleteByMember(Member member);
 }

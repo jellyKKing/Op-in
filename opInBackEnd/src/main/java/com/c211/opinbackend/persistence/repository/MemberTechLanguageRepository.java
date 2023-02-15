@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.c211.opinbackend.persistence.entity.Member;
 import com.c211.opinbackend.persistence.entity.MemberTechLanguage;
-import com.c211.opinbackend.persistence.entity.MemberTopic;
 import com.c211.opinbackend.persistence.entity.TechLanguage;
 
 @Repository
@@ -23,4 +22,5 @@ public interface MemberTechLanguageRepository extends JpaRepository<MemberTechLa
 	@Override
 	void delete(MemberTechLanguage entity);
 
+	void deleteByMember(Member member);
 }

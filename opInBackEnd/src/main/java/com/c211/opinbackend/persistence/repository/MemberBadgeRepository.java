@@ -12,4 +12,6 @@ import com.c211.opinbackend.persistence.entity.MemberBadge;
 public interface MemberBadgeRepository extends JpaRepository<MemberBadge, Long> {
 
 	List<MemberBadge> findByMember(Member member);
+
+	void deleteByMember(Member member);
 }

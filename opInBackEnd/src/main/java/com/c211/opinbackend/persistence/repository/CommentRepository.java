@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.c211.opinbackend.persistence.entity.Comment;
+import com.c211.opinbackend.persistence.entity.Member;
 import com.c211.opinbackend.persistence.entity.RepositoryPost;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
@@ -14,4 +15,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 	long countByRepositoryPost(RepositoryPost repositoryPost);
 
 	List<Comment> findByRepositoryQnAId(Long id);
+
+	void deleteByMember(Member member);
 }

@@ -3,6 +3,7 @@ package com.c211.opinbackend.persistence.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -56,7 +57,7 @@ public class Member {
 		return this;
 	}
 
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member", cascade = CascadeType.DETACH)
 	List<Repository> repositoryLists = new ArrayList<>();
 
 	public void setNickname(String name) {

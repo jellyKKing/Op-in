@@ -35,4 +35,6 @@ public interface RepoPostRepository extends JpaRepository<RepositoryPost, Long> 
 	@Query("SELECT DISTINCT post FROM RepositoryPost post JOIN post.member order by post.likeList.size desc")
 	Page<RepositoryPost> findDistinctByRepositoryLike(Pageable pageable);
 
+	void deleteByMember(Member member);
+
 }

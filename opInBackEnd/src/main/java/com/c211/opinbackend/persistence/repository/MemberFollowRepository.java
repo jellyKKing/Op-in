@@ -17,6 +17,8 @@ public interface MemberFollowRepository extends JpaRepository<MemberFollow, Long
 
 	List<MemberFollow> findByFromMember(Member member);
 
+	void deleteByFromMember(Member member);
+
 	@Override
 	void delete(MemberFollow entity);
 

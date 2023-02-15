@@ -37,8 +37,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
 	boolean existsByEmailAndAndGithubSyncFl(String email, boolean sync);
 
-	@Override
-	void delete(Member entity);
-
 	Member save(Member member);
 }
